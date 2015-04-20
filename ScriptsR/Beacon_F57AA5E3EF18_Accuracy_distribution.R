@@ -3,9 +3,7 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-setwd("C:/Users/Albert/Desktop/Albert/UOC/Semestre 7 2014-15 (2)/TFM - Sistemes de comunicació/Scripts R")
-
-path <- "C:/Users/Albert/Desktop/Albert/UOC/Semestre 7 2014-15 (2)/TFM - Sistemes de comunicació/DATASET_BEACONS/beacon_F57AA5E3EF18/hall_2/"
+path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_2/"
 
 files <- list.files(path=path,pattern="*.csv")
 

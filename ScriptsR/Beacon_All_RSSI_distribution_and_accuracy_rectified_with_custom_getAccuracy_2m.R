@@ -9,7 +9,7 @@ calculateAccuracy <- function (rssi, txPower) {
   accuracy
 }   
 
-path <- "C:/Users/Albert/Desktop/Albert/UOC/Semestre 7 2014-15 (2)/TFM - Sistemes de comunicació/DATASET_BEACONS/measures_at_two_meter/d1/"
+path <- "./DATASET_BEACONS/measures_at_two_meter/d1/"
 
 files <- list.files(path=path,pattern="*.csv")
 filelist <- lapply(paste(path,files,sep=""),function(i){read.csv(i, header=TRUE, sep=";", dec=",")})
