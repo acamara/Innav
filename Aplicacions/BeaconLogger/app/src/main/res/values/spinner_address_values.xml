@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="beacon_address_array">
+        <item>All</item>
+        <item>D0:F8:F2:95:3A:5C</item>
+        <item>D6:40:86:6D:BD:DF</item>
+        <item>D9:A3:28:6A:A7:F1</item>
+        <item>F5:7A:A5:E3:EF:18</item>
+        <item>FF:A6:7C:AF:B0:CB</item>
+    </string-array>
+</resources>
