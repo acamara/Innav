@@ -3,11 +3,7 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-calculateAccuracy <- function (rssi, txPower) {
-  xg = 0; n = 6; d0=1;
-  accuracy = d0*(10^((-rssi+txPower-xg)/(10*n)))
-  accuracy
-}   
+source('./ScriptsR/calculate_Accuracy_custom.R');
 
 path <- "./DATASET_BEACONS/measures_at_two_meter/d1/"
 
@@ -26,7 +22,7 @@ par(mfrow = c(1, 2))
 medianas_accuracy  <- sapply(accuracy_data, median)
 promedios_accuracy <- sapply(accuracy_data, mean)
 
-boxplot(accuracy_data,main="Accuracy at 1 meter",xlab="BEACON",
+boxplot(accuracy_data,main="Accuracy at 2 meters",xlab="BEACON",
         names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]]))
         ,ylab="Distance [m]", ylim=c(0,7), las=1)
 
@@ -37,13 +33,13 @@ mtext(paste("Means:   ", paste(round(promedios_accuracy,2),collapse=", ")),1, li
 mtext(paste("Medians: ", paste(round(medianas_accuracy,2),collapse=", ")), 1, line=3.75, adj=0, cex=0.8, col="GRAY32")
 
 
-# Accuracy rectificada con el promedio de RSSi
+# Accuracy rectificada con modelo propio de path loss
 
-accuracy_data <- lapply(rssi_data, calculateAccuracy, -77)
+accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77)
 medianas_accuracy  <- sapply(accuracy_data, median)
 promedios_accuracy <- sapply(accuracy_data, mean)
 
-boxplot(accuracy_data,main="Accuracy at 1 meter rectified with custom getAccuracy",xlab="BEACON",ylab="Distance [m]",
+boxplot(accuracy_data,main="Accuracy at 2 meters rectified with custom getAccuracy",xlab="BEACON",ylab="Distance [m]",
         names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]]))
         ,ylim=c(0,7), las=1)
 

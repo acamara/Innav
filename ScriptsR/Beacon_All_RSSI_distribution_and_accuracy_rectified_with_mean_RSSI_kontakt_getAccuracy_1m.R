@@ -3,22 +3,7 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-calculateAccuracy_kontakt <- function (rssi, txPower) {
-    if (rssi == 0){
-      accuracy = -1.0; # if we cannot determine accuracy, return -1.
-    }
-    ratio = rssi*1.0/txPower;
-    
-    if (ratio < 1.0){
-      accuracy = ratio^10;
-    }
-      
-    else{
-      accuracy =  (0.89976)*(ratio^7.7095) + 0.111;
-    }
-  accuracy
-}   
-
+source('./ScriptsR/calculate_Accuracy_kontakt.R');
 
 path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
@@ -48,10 +33,10 @@ mtext(paste("Means:   ", paste(round(promedios_accuracy,2),collapse=", ")),1, li
 mtext(paste("Medians: ", paste(round(medianas_accuracy,2),collapse=", ")), 1, line=3.75, adj=0, cex=0.8, col="GRAY32")
 
 
-# Accuracy rectificada con el promedio de RSSi 
+# Accuracy rectificada con el promedio de RSSi y modelo de kontakt
 
 for(i in 1:length(rssi_data)){
-  accuracy_data[[i]] <- sapply(rssi_data[[i]], calculateAccuracy_kontakt, txPower=promedios_rssi[[i]])
+  accuracy_data[[i]] <- sapply(rssi_data[[i]], calculate_Accuracy_kontakt, txPower=promedios_rssi[[i]])
 }
 
 medianas_accuracy  <- sapply(accuracy_data, median)
