@@ -36,7 +36,7 @@ mtext(paste("Medians: ", paste(round(medianas_accuracy,2),collapse=", ")), 1, li
 # Accuracy rectificada con el promedio de RSSi y modelo de kontakt
 
 for(i in 1:length(rssi_data)){
-  accuracy_data[[i]] <- sapply(rssi_data[[i]], calculate_Accuracy_kontakt, txPower=promedios_rssi[[i]])
+  accuracy_data[[i]] <- sapply(rssi_data[[i]], calculate_Accuracy_kontakt, promedios_rssi[[i]])
 }
 
 medianas_accuracy  <- sapply(accuracy_data, median)
