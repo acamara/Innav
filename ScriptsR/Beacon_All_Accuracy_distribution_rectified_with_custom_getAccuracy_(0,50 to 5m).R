@@ -44,10 +44,18 @@ path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 1)
 
-path <- "./DATASET_BEACONS/measures_at_two_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_two_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 2)
 
 path <- "./DATASET_BEACONS/measures_at_three_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 3)
+
+path <- "./DATASET_BEACONS/measures_at_four_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance(path, 4)
+
+path <- "./DATASET_BEACONS/measures_at_five_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance(path, 5)

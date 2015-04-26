@@ -39,10 +39,18 @@ path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
 
 boxplot_rssi_all_beacons_specific_distance(path, 1, -77)
 
-path <- "./DATASET_BEACONS/measures_at_two_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_two_meter/d1/"
 
 boxplot_rssi_all_beacons_specific_distance(path, 2, -83.02)
 
 path <- "./DATASET_BEACONS/measures_at_three_meter/d1/"
 
 boxplot_rssi_all_beacons_specific_distance(path, 3, -86.54)
+
+path <- "./DATASET_BEACONS/measures_at_four_meter/d1/"
+
+boxplot_rssi_all_beacons_specific_distance(path, 4, -89.04)
+
+path <- "./DATASET_BEACONS/measures_at_five_meter/d1/"
+
+boxplot_rssi_all_beacons_specific_distance(path, 5, -90.98)
