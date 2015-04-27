@@ -5,7 +5,7 @@ graphics.off()
 
 source('./ScriptsR/calculate_Accuracy_custom.R');
 
-path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
 files <- list.files(path=path,pattern="*.csv")
 filelist <- lapply(paste(path,files,sep=""),function(i){read.csv(i, header=TRUE, sep=";", dec=",")})

@@ -3,7 +3,7 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_2/"
+path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_1/"
 
 files <- list.files(path=path,pattern="*.csv")
 

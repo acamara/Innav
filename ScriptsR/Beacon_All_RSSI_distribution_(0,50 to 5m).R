@@ -35,7 +35,7 @@ path <- "./DATASET_BEACONS/measures_at_half_meter/d1/"
 
 boxplot_rssi_all_beacons_specific_distance(path, 0.5, -70.98)
 
-path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
 boxplot_rssi_all_beacons_specific_distance(path, 1, -77)
 

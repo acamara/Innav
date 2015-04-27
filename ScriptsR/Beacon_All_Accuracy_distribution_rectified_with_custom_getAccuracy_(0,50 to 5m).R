@@ -40,7 +40,7 @@ path <- "./DATASET_BEACONS/measures_at_half_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 0.5)
 
-path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 1)
 

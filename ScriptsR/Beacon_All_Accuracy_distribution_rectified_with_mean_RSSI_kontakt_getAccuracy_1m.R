@@ -23,10 +23,10 @@ medianas_accuracy  <- sapply(accuracy_data, median)
 promedios_accuracy <- sapply(accuracy_data, mean)
 
 boxplot(accuracy_data,main="Accuracy at 1 meter",xlab="BEACON",ylab="Distance [m]",
-        names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]])),
+        names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]])),
         ylim=c(0,7), las=1)
 
-segments(0, 1, 5, 1, col = "RED")
+segments(0, 1, 6, 1, col = "RED")
 axis(2, 1, las=1)
 
 mtext(paste("Means:   ", paste(round(promedios_accuracy,2),collapse=", ")),1, line=2.50, adj=0, cex=0.8, col="GRAY32")
@@ -43,10 +43,10 @@ medianas_accuracy  <- sapply(accuracy_data, median)
 promedios_accuracy <- sapply(accuracy_data, mean)
 
 boxplot(accuracy_data,main="Accuracy at 1 meter rectified with RSSI mean and kontakt getAccuracy",xlab="BEACON",ylab="Distance [m]",
-        names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]])),
+        names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]])),
         ylim=c(0,7), las=1)
 
-segments(0, 1, 5, 1, col = "RED")
+segments(0, 1, 6, 1, col = "RED")
 axis(2, 1, las=1)
 
 mtext(paste("Means:   ", paste(round(promedios_accuracy,2),collapse=", ")),1, line=2.50, adj=0, cex=0.8, col="GRAY32")

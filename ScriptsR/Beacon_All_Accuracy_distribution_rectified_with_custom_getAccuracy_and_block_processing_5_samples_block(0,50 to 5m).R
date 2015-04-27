@@ -42,11 +42,11 @@ path <- "./DATASET_BEACONS/measures_at_half_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance_grouping(path, 0.5, 5)
 
-path <- "./DATASET_BEACONS/measures_at_one_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance_grouping(path, 1, 5)
 
-path <- "./DATASET_BEACONS/measures_at_two_meter/d2/"
+path <- "./DATASET_BEACONS/measures_at_two_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance_grouping(path, 2, 5)
 
