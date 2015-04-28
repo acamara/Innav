@@ -95,9 +95,10 @@ public class myLogger {
         try{
             //Write a new beacon object list to the CSV file
             for (BeaconDevice beacon : beacons) {
-                if (beacons_samples_counter.get(beacon.getAddress()) < num_samples) {
-                    beacons_samples_counter.put(beacon.getAddress(), beacons_samples_counter.get(beacon.getAddress()) + 1);
-                    filename = beacons_filenames.get(beacon.getAddress());
+                String address = beacon.getAddress();
+                if (beacons_filenames.containsKey(address) && beacons_samples_counter.get(address) < num_samples) {
+                    beacons_samples_counter.put(beacon.getAddress(), beacons_samples_counter.get(address) + 1);
+                    filename = beacons_filenames.get(address);
 
                     // Obrim l'arxiu apropiat
                     File file = new File(directory, filename);

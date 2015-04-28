@@ -36,7 +36,6 @@ import com.kontakt.sdk.android.util.MemoryUnit;
 import com.kontakt.sdk.core.interfaces.model.IAction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -59,11 +58,11 @@ public class BeaconRangeActivity extends ActionBarActivity {
 
     private myLogger logger;
     private SoundPool soundPool;
-    private int idalertsound;
+    private int id_alert_sound;
     private int max_num_samples = 0;
-    private String address;
+    private ArrayList<String> sel_address;
     private Double distance;
-    private Boolean distanceonfilename;
+    private Boolean distance_on_filename;
     private Boolean alert = true;
 
     private BeaconBaseAdapter adapter;
@@ -82,16 +81,15 @@ public class BeaconRangeActivity extends ActionBarActivity {
 
         Bundle bundle = getIntent().getExtras();
         max_num_samples = bundle.getInt("MAX_NUM_SAMPLES",-1);
-        address = bundle.getString("ADDRESS", null);
+        sel_address = bundle.getStringArrayList("SELECTED_ADDRESS");
         distance = bundle.getDouble("DISTANCE", -1.0);
-        distanceonfilename = bundle.getBoolean("DISTANCE_ON_FILENAME", false);
+        distance_on_filename = bundle.getBoolean("DISTANCE_ON_FILENAME", false);
         Log.d("Albert - DEBUG", "Nombre de mostres pasades: " + String.valueOf(max_num_samples));
-        Log.d("Albert - DEBUG", "Address: " + address);
         Log.d("Albert - DEBUG", "Distance: " + distance);
-        Log.d("Albert - DEBUG", "Distance on filename: " + distanceonfilename);
-        logger = new myLogger(this, max_num_samples, distance, distanceonfilename);
+        Log.d("Albert - DEBUG", "Distance on filename: " + distance_on_filename);
+        logger = new myLogger(this, max_num_samples, distance, distance_on_filename);
         soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0);
-        idalertsound = soundPool.load(this, R.raw.sonido_alerta, 0);
+        id_alert_sound = soundPool.load(this, R.raw.sonido_alerta, 0);
         textView_num_samples.setText(String.valueOf(max_num_samples));
 
         actionManager = ActionManager.newInstance(this);
@@ -138,20 +136,19 @@ public class BeaconRangeActivity extends ActionBarActivity {
 */
 
 
-        if(address != null && !address.equals("All") && max_num_samples != -1) {
+        if(sel_address != null && sel_address.size() == 1 && max_num_samples != -1) {
             Log.d("Albert - DEBUG", "Filtrant per adreça un beacon");
-            logger.create_file(address);
-            beaconManager.addFilter(Filters.newAddressFilter(address));                     //accept Beacons with specified adress only
+            Log.d("Albert - DEBUG", "Selected Address: " + sel_address.toString());
+            logger.create_file(sel_address.get(0));
+            beaconManager.addFilter(Filters.newAddressFilter(sel_address.get(0))); //accept Beacons with specified adress only
         }
 
-        if(address.equals("All") && max_num_samples != -1) {
+        if(sel_address != null && sel_address.size() > 1 && max_num_samples != -1) {
             Log.d("Albert - DEBUG", "No Filtrant per adreça, analitzant tots els Beacons");
-            List<String> myResArrayList = Arrays.asList(getResources().getStringArray(R.array.beacon_address_array));
-            List<String> beacons_address_list = new ArrayList<String>(myResArrayList);
-            beacons_address_list.remove(0);
+            Log.d("Albert - DEBUG", "Selected Address: " + sel_address.toString());
 
-            for(int i= 0; i < beacons_address_list.size();i++) {
-                logger.create_file(beacons_address_list.get(i));
+            for(int i= 0; i < sel_address.size();i++) {
+                logger.create_file(sel_address.get(i));
             }
         }
 
@@ -203,7 +200,7 @@ public class BeaconRangeActivity extends ActionBarActivity {
                             textView_counter.setText("Capturing data " + logger.get_number_samples_captured() + "...");
                         }
                         if(logger.all_samples_captured() && alert && max_num_samples !=-1){
-                            soundPool.play(idalertsound, 1, 1, 1, 0, 1);
+                            soundPool.play(id_alert_sound, 1, 1, 1, 0, 1);
                             textView_counter.setTextColor(Color.BLUE);
                             textView_counter.setText("Data captured");
                             alert = false;
@@ -231,7 +228,7 @@ public class BeaconRangeActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_directoryexplorer) {
-            Intent intent = new Intent(new Intent(BeaconRangeActivity.this, Directoryexplorer.class));
+            Intent intent = new Intent(new Intent(BeaconRangeActivity.this, DirectoryexplorerActivity.class));
             startActivity(intent);
             return true;
         }

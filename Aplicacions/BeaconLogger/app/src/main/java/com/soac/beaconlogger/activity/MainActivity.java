@@ -1,58 +1,54 @@
 package com.soac.beaconlogger.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.soac.beaconlogger.R;
+import com.soac.beaconlogger.dialog.BeaconSelectDialog;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements BeaconSelectDialog.DialogListener {
 
     @InjectView(R.id.editText_max_num_samples)
     EditText text_max_num_samples;
-
-    @InjectView(R.id.spinner_address)
-    Spinner spinner_address;
 
     @InjectView(R.id.numberPicker_distance)
     NumberPicker np_distance;
 
     @InjectView(R.id.checkBox_distanceonFilename)
-    CheckBox cb_distasnceonFilename;
+    CheckBox cb_distasnce_on_Filename;
+
+    @InjectView(R.id.select_beacons)
+    Button b_select_beacons;
 
     private int max_num_samples = -1;
-    private String address = null;
     private Double distance = -1.00;
     private String[] values;
+    private ArrayList<Integer> mSelectedItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.inject(this);
-
-        //Carreguem el spinner
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.beacon_address_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner_address.setAdapter(adapter);
 
         values = new String[41];
         Double num = -0.25;
@@ -68,6 +64,9 @@ public class MainActivity extends ActionBarActivity {
         np_distance.setMaxValue(values.length-1);
         np_distance.setMinValue(0);
         np_distance.setDisplayedValues(values);
+
+        mSelectedItems = new ArrayList<Integer>();
+        b_select_beacons.setText(getSavedSelectedItemsAsString());
     }
 
     @Override
@@ -85,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_directoryexplorer) {
-            Intent intent = new Intent(new Intent(MainActivity.this, Directoryexplorer.class));
+            Intent intent = new Intent(new Intent(MainActivity.this, DirectoryexplorerActivity.class));
             startActivity(intent);
             return true;
         }
@@ -103,8 +102,6 @@ public class MainActivity extends ActionBarActivity {
     void startRanging() {
         Intent intent = new Intent(new Intent(MainActivity.this, BeaconRangeActivity.class));
 
-        address = spinner_address.getSelectedItem().toString();
-
         if(!text_max_num_samples.getText().toString().isEmpty()) {
             max_num_samples = Integer.valueOf(text_max_num_samples.getText().toString());
         }
@@ -112,9 +109,63 @@ public class MainActivity extends ActionBarActivity {
         distance = Double.valueOf(values[np_distance.getValue()]);
 
         intent.putExtra("MAX_NUM_SAMPLES", max_num_samples);
-        intent.putExtra("ADDRESS", address);
+
+        intent.putStringArrayListExtra("SELECTED_ADDRESS", getSelectedAddress());
         intent.putExtra("DISTANCE", distance);
-        intent.putExtra("DISTANCE_ON_FILENAME",  cb_distasnceonFilename.isChecked());
+        intent.putExtra("DISTANCE_ON_FILENAME", cb_distasnce_on_Filename.isChecked());
         startActivity(intent);
+    }
+
+    @OnClick(R.id.select_beacons)
+    void selectBeacons() {
+        BeaconSelectDialog selec_dialog = new BeaconSelectDialog();
+        selec_dialog.show(getSupportFragmentManager(), "select_dialog");
+    }
+
+    private String getSavedSelectedItemsAsString(){
+        final SharedPreferences preferences = getSharedPreferences("selected_beacons", Context.MODE_PRIVATE);
+        String[] availableTypes = getResources().getStringArray(R.array.beacon_unique_id_array);
+        String sel_beacons = "";
+
+        for(int i=0; i <availableTypes.length; i++) {
+            if(preferences.getBoolean(availableTypes[i],false)){
+                sel_beacons += availableTypes[i]+= ", ";
+                mSelectedItems.add(i);
+            }
+        }
+
+        sel_beacons = sel_beacons.substring(0,sel_beacons.length() - 2);
+        Log.d("Albert - DEBUG", "getSavedSelectedItems: "+ sel_beacons + " " + mSelectedItems.toString());
+        return sel_beacons;
+    }
+
+    private ArrayList<String> getSelectedAddress(){
+        String[] beacons_address = getResources().getStringArray(R.array.beacon_address_array);
+        ArrayList<String> sel_address = new ArrayList();
+
+        for(int i=0; i <mSelectedItems.size();i++){
+            sel_address.add(beacons_address[mSelectedItems.get(i)]);
+        }
+        return sel_address;
+    }
+
+    // The dialog fragment receives a reference to this Activity through the
+    // Fragment.onAttach() callback, which it uses to call the following methods
+    // defined by the NoticeDialogFragment.NoticeDialogListener interface
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        // User touched the dialog's positive button
+        BeaconSelectDialog sdialog = (BeaconSelectDialog) dialog;
+        mSelectedItems = sdialog.getSelectedItems();
+
+        b_select_beacons.setText(sdialog.getSelectedItemsAsString());
+        //Toast.makeText(getApplicationContext(), mSelectedItems.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), sel_address.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        // User touched the dialog's negative button
+        //Toast.makeText(getApplicationContext(), android.R.string.no, Toast.LENGTH_SHORT).show();
     }
 }

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:orientation="vertical"
@@ -20,7 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="1" />
+            android:background="@color/blue"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -73,21 +78,29 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="by Address:"
-                android:id="@+id/textView4"
-                android:textSize="16dp" />
+                android:text="by Beacon ID:"
+                android:id="@+id/textView21"
+                android:textSize="16dp"
+                android:gravity="left|center"
+                android:layout_marginRight="5dp" />
 
-            <Spinner
-                android:layout_width="match_parent"
+            <Button
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner_address"
-                android:spinnerMode="dropdown"
-                android:saveEnabled="true"/>
+                android:text="Select Beacons"
+                android:id="@+id/select_beacons"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:drawableRight="@drawable/arrow" />
 
         </LinearLayout>
 

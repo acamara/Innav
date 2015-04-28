@@ -25,7 +25,6 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -39,7 +38,7 @@
         </activity>
 
         <activity
-            android:name=".activity.Directoryexplorer"
+            android:name=".activity.DirectoryexplorerActivity"
             android:label="@string/title_activity_directoryexplorer"
             android:parentActivityName=".activity.MainActivity" >
             <!-- Parent activity meta-data to support API level 7+ -->
