@@ -34,7 +34,7 @@ mtext(paste("Medians: ", paste(round(medianas_accuracy,2),collapse=", ")), 1, li
 
 
 # Accuracy rectificada con modelo propio de path lost
-accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77)
+accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 5)
 medianas_accuracy  <- sapply(accuracy_data, median)
 promedios_accuracy <- sapply(accuracy_data, mean)
 
