@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -16,26 +17,45 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.75">
+            android:layout_weight="0.50">
 
             <TextView android:id="@+id/device_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16dp"/>
+                android:textSize="16dp"
+                android:text="name" />
 
             <TextView android:id="@+id/device_address"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="12dp"/>
+                android:layout_height="match_parent"
+                android:textSize="12dp"
+                android:text="address" />
         </LinearLayout>
 
-        <TextView android:id="@+id/device_rssi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="16dp"
-            android:textAlignment="viewEnd" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="254dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.50">
+
+            <TextView android:id="@+id/device_rssi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textAlignment="viewEnd"
+                android:text="rssi" />
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textAlignment="viewEnd"
+                android:text="distance" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

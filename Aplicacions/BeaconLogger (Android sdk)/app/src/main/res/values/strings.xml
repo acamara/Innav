@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BeaconLogger</string>
+    <string name="app_name">Beacon Logger (Android SDK)</string>
 
     <string name="hello_world">Aplicación para analizar Beacons</string>
     <string name="action_settings">Settings</string>
@@ -16,5 +16,13 @@
 
     <!-- titles -->
     <string name="title_devices">Beacons</string>
-    <string name="title_beacons">Lista de beacons</string>
+    <string name="title_beacons">List of Beacons</string>
+
+    <string name="configuration">Configuration</string>
+    <string name="filter">Filter</string>
+    <string name="num_samples">Samples to capture:</string>
+    <string name="title_activity_directoryexplorer">Directory Explorer</string>
+    <string name="action_directoryexplorer">Directory explorer</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_rename">Rename</string>
 </resources>

@@ -8,4 +8,8 @@
         android:title="@string/menu_stop"
         android:orderInCategory="101"
         android:showAsAction="ifRoom"/>
+    <item android:id="@+id/menu_directoryexplorer"
+        android:title="Directory Explorer"
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"/>
 </menu>
