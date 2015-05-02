@@ -1,4 +1,4 @@
-# View accuracy for all beacons from 0.5 meters to 5 meters
+# View accuracy for all beacons from 0 meters to 8 meters
 
 # Clean out the workspace, console and plots
 rm(list=ls())      
@@ -20,13 +20,13 @@ boxplot_accuracy_all_beacons_specific_distance_grouping <- function(path, distan
   }
   
   # Accuracy rectificada con modelo propio de path lost
-  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 5)
+  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 2)
   medianas_accuracy  <- sapply(accuracy_data, median)
   promedios_accuracy <- sapply(accuracy_data, mean)
   
   boxplot(accuracy_data,main=paste("Accuracy at ", distance, " meters rectified with custom getAccuracy"),xlab="BEACON",ylab="Distance [m]",
           names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]])),
-          ylim=c(0,7), las=1)
+          ylim=c(0,8), las=1)
   
   segments(0, distance, 6, distance, col = "RED")
   axis(2, distance, las=1)
@@ -38,9 +38,9 @@ boxplot_accuracy_all_beacons_specific_distance_grouping <- function(path, distan
 
 par(mfrow = c(2, 3))
 
-path <- "./DATASET_BEACONS/measures_at_half_meter/d1/"
+path <- "./DATASET_BEACONS/measures_at_zero_meter/d1/"
 
-boxplot_accuracy_all_beacons_specific_distance_grouping(path, 0.5, 5)
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 0, 5)
 
 path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
@@ -53,3 +53,23 @@ boxplot_accuracy_all_beacons_specific_distance_grouping(path, 2, 5)
 path <- "./DATASET_BEACONS/measures_at_three_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance_grouping(path, 3, 5)
+
+path <- "./DATASET_BEACONS/measures_at_four_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 4, 5)
+
+path <- "./DATASET_BEACONS/measures_at_five_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 5, 5)
+
+path <- "./DATASET_BEACONS/measures_at_six_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 6, 5)
+
+path <- "./DATASET_BEACONS/measures_at_seven_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 7, 5)
+
+path <- "./DATASET_BEACONS/measures_at_eight_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance_grouping(path, 8, 5)

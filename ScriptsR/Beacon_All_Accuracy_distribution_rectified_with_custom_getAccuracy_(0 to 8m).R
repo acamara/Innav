@@ -1,4 +1,4 @@
-# View accuracy for all beacons from 0.5 meters to 5 meters
+# View accuracy for all beacons from 0 meters to 8 meters
 
 # Clean out the workspace, console and plots
 rm(list=ls())      
@@ -19,7 +19,7 @@ boxplot_accuracy_all_beacons_specific_distance <- function(path, distance){
   promedios_rssi <- lapply(rssi_data, mean)
   
   # Accuracy rectificada con modelo propio de path lost
-  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 5)
+  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 2)
   medianas_accuracy  <- sapply(accuracy_data, median)
   promedios_accuracy <- sapply(accuracy_data, mean)
   
@@ -36,9 +36,9 @@ boxplot_accuracy_all_beacons_specific_distance <- function(path, distance){
 
 par(mfrow = c(2, 3))
 
-path <- "./DATASET_BEACONS/measures_at_half_meter/d1/"
+path <- "./DATASET_BEACONS/measures_at_zero_meter/d1/"
 
-boxplot_accuracy_all_beacons_specific_distance(path, 0.5)
+boxplot_accuracy_all_beacons_specific_distance(path, 0)
 
 path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
 
@@ -59,3 +59,15 @@ boxplot_accuracy_all_beacons_specific_distance(path, 4)
 path <- "./DATASET_BEACONS/measures_at_five_meter/d1/"
 
 boxplot_accuracy_all_beacons_specific_distance(path, 5)
+
+path <- "./DATASET_BEACONS/measures_at_six_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance(path, 6)
+
+path <- "./DATASET_BEACONS/measures_at_seven_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance(path, 7)
+
+path <- "./DATASET_BEACONS/measures_at_eight_meter/d1/"
+
+boxplot_accuracy_all_beacons_specific_distance(path, 8)
