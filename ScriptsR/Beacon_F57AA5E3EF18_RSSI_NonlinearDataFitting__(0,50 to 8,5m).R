@@ -27,15 +27,18 @@ plot(xdata, ydata, main="Mean RSSI Distribution over Distance - Beacon F5:7A:A5:
 axis(1, at=seq(0.5, 8.5, 0.5), labels=seq(0.5, 8.5, 0.5))
 
 # some starting values
-p1 = -77
+rssi_0 = -77
 p2 = 2
-p3 = 3
+p3 = 0
 
 # do the fit
-fit = nls(ydata ~ p1-10*p2*log10(xdata), start=list(p1=p1,p2=p2))
+fit = nls(ydata ~ rssi_0-10*p2*log10(xdata)+p3, start=list(p2=p2,p3=p3))
 
 # summarise
 summary(fit)
 
 new = data.frame(xdata = seq(min(xdata),max(xdata),len=200))
 lines(new$xdata,predict(fit,newdata=new), col='BLUE')
+
+parameters <- round(coef(fit), 2)
+mtext(paste("n: ", parameters[[1]], " Xg: ", parameters[[2]]), 1, line=3, adj=0, cex=0.8, col="GRAY32")

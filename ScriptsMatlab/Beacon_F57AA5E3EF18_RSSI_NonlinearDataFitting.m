@@ -32,15 +32,16 @@ set(gca,'XTick',d)
 %  x(3) = Xg(1)
 %
 % Then define the curve as a function of the parameters x
+rssi_0 = -77;
 d_0 = 1;
 
-F = @(x,d)(x(1)-10*x(2)*log10(d/d_0)+x(3));
+F = @(x,d)(rssi_0-10*x(1)*log10(d/d_0)+x(2));
 
 %%
 % We arbitrarily set our initial point x0 as follows: 
 % n(1) = 0, Xg(1) = 0
 
-x0 = [-77 1 0];
+x0 = [1 0];
 
 %% 
 % We run the solver and plot the resulting fit.

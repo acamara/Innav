@@ -23,11 +23,12 @@ data_fiting <- function(path, distance, beacon){
   # points(xdata, ydata_median, col="RED")
   
   # some starting values
-  p1 = -77
+  rssi_0 = -77
   p2 = 2
+  p3 = 0
   
   # do the fit
-  fit = nls(ydata ~ p1-10*p2*log10(xdata), start=list(p1=p1,p2=p2))
+  fit = nls(ydata ~ rssi_0-10*p2*log10(xdata)+p3, start=list(p2=p2,p3=p3))
   
   # summarise
   summary(fit)
@@ -37,7 +38,7 @@ data_fiting <- function(path, distance, beacon){
   
   parameters <- round(coef(fit), 2)
   
-  mtext(paste("RSSI_0: ", parameters[[1]], " n: ", parameters[[2]]), 1, line=3, adj=0, cex=0.8, col="GRAY32")
+  mtext(paste("n: ", parameters[[1]], " Xg: ", parameters[[2]]), 1, line=3, adj=0, cex=0.8, col="GRAY32")
   
   
   fit
