@@ -20,7 +20,7 @@ boxplot_accuracy_all_beacons_specific_distance_grouping <- function(path, distan
   }
   
   # Accuracy rectificada con modelo propio de path lost
-  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 2)
+  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 1, 2, 0)
   medianas_accuracy  <- sapply(accuracy_data, median)
   promedios_accuracy <- sapply(accuracy_data, mean)
   

@@ -19,13 +19,13 @@ boxplot_accuracy_all_beacons_specific_distance <- function(path, distance){
   promedios_rssi <- lapply(rssi_data, mean)
   
   # Accuracy rectificada con modelo propio de path lost
-  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 2)
+  accuracy_data <- lapply(rssi_data, calculate_Accuracy_custom, -77, 1, 2, 0)
   medianas_accuracy  <- sapply(accuracy_data, median)
   promedios_accuracy <- sapply(accuracy_data, mean)
   
   boxplot(accuracy_data,main=paste("Accuracy at ", distance, " meters rectified with custom getAccuracy"),xlab="BEACON",ylab="Distance [m]",
           names=c(paste(address_data[[1]][[1]]),paste(address_data[[2]][[1]]),paste(address_data[[3]][[1]]),paste(address_data[[4]][[1]]),paste(address_data[[5]][[1]])),
-          ylim=c(0,7), las=1)
+          ylim=c(0,8), las=1)
   
   segments(0, distance, 6, distance, col = "RED")
   axis(2, distance, las=1)
