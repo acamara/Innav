@@ -101,7 +101,6 @@ B3_accuracy_data = lapply(B3_rssi_data, calculate_Accuracy_custom, -77, 1, 2, 0)
 x_positions = c(1,length(B1_accuracy_data))
 y_positions = c(1,length(B1_accuracy_data))
 
-mostra <- 1
 
 for(i in 1:length(B1_accuracy_data)){
   sol = calculate_Position_LSQ(b1x, b1y, b2x, b2y, b3x, b3y, B1_accuracy_data[[i]], B2_accuracy_data[[i]], B3_accuracy_data[[i]])
