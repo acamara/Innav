@@ -3,13 +3,13 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-path <- "./DATASET_BEACONS/measures_at_one_meter/d1/"
+path <- "./DATASET_BEACONS/MEASURES_WITH_ANDROID_SDK/measures_at_one_meter/d1/"
 
 files <- list.files(path=path,pattern="*.csv")
 filelist <- lapply(paste(path,files,sep=""),function(i){read.csv(i, header=TRUE, sep=";")})
 
 address_list = lapply(filelist,"[",,2)
-rssi_data = lapply(filelist,"[",,7)
+rssi_data = lapply(filelist,"[",,4)
 
 par(mfrow = c(2, 3))
 

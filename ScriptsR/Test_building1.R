@@ -24,7 +24,7 @@ x <- rep(4.75,length(y))
 
 
 # Creem un gràfic buit on situarem els Beacons i l'usuari
-plot(0, 0, type="n", main="Test environment [building 1]", xlab="x (6.00 m)", ylab="y (10.37 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
+plot(0, 0, type="n", main="Test environment - Building 1", xlab="x (10.67 m)", ylab="y (10.37 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
 
 # Creem el eixos del gràfic
 axis(1, at=seq(0, ceiling(roomWidth), step), labels=seq(0, ceiling(roomWidth), step))

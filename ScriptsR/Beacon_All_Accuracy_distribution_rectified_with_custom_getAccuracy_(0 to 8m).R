@@ -8,9 +8,9 @@ graphics.off()
 source('./ScriptsR/calculate_Accuracy_custom.R');
 
 # Create calibration parameters
-RSSI_0  <- c(-77.00, -77.00, -77.00, -77.00, -77.00)
+RSSI_0  <- c(-75.15, -77.61, -78.29, -73.14, -84.92)
 D_0     <- c(1.00, 1.00, 1.00, 1.00, 1.00)
-N       <- c(2, 2, 2, 2, 2)
+N       <- c(1.8, 1.8, 1.8, 1.8, 1.8)
 Xg      <- c(0, 0, 0, 0, 0)
 
 calibration <- data.frame(RSSI_0, D_0, N, Xg)
