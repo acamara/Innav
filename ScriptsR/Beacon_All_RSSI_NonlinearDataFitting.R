@@ -17,7 +17,7 @@ data_fiting <- function(path, distance, beacon){
   ydata_median <- sapply(rssi_data, median)
   
   # look at it
-  plot(xdata, ydata, main=paste("Mean RSSI Distribution over Distance - ", beacon), xlab="Distance [meters]", ylab="RSSI [dBm]", ylim=c(-95,-60), las=1, xaxt="n")
+  plot(xdata, ydata, main=paste("Mean RSSI Distribution over Distance - ", beacon), xlab="Distance [meters]", ylab="RSSI [dBm]", ylim=c(-95,-55), las=1, xaxt="n")
   axis(1, at=distance, labels=distance)
   
   # points(xdata, ydata_median, col="RED")
@@ -48,17 +48,17 @@ par(mfrow = c(2, 3))
 
 distances <- seq(0.5, 8.5, 0.5)
 
-path <- "./DATASET_BEACONS/beacon_D0F8F2953A5C/hall_1/"
+path <- "./DATASET_BEACONS/beacon_D0F8F2953A5C/hall_3/"
 data_fiting(path, distances, "Beacon D0:F8:F2:95:3A:5C")
 
-path <- "./DATASET_BEACONS/beacon_D9A3286AA7F1/hall_1/"
+path <- "./DATASET_BEACONS/beacon_D9A3286AA7F1/hall_3/"
 data_fiting(path, distances, "Beacon D9:A3:28:6A:A7:F1")
 
-path <- "./DATASET_BEACONS/beacon_D640866DBDDF/hall_1/"
+path <- "./DATASET_BEACONS/beacon_D640866DBDDF/hall_3/"
 data_fiting(path, distances, "Beacon D6:40:86:6D:BD:DF")
 
-path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_1/"
+path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_3/"
 data_fiting(path, distances, "Beacon F5:7A:A5:E3:EF:18")
 
-path <- "./DATASET_BEACONS/beacon_FFA67CAFB0CB/hall_1/"
+path <- "./DATASET_BEACONS/beacon_FFA67CAFB0CB/hall_3/"
 data_fiting(path, distances, "Beacon FF:A6:7C:AF:B0:CB")

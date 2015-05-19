@@ -1,4 +1,4 @@
-# Beacon_F57AA5E3EF18_RSSI_NonlinearDataFitting__(0.50 to 8.5m)
+# Beacon_D0F8F2953A5C_RSSI_NonlinearDataFitting__(0.50 to 8.5m)
 
 # Clean out the workspace, console and plots
 rm(list=ls())      
@@ -6,7 +6,7 @@ cat("\014")
 graphics.off()
 
 
-path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_3/"
+path <- "./DATASET_BEACONS/beacon_D0F8F2953A5C/hall_2/"
 
 files <- list.files(path=path,pattern="*.csv")
 filelist <- lapply(paste(path,files,sep=""),function(i){read.csv(i, header=TRUE, sep=";")})
@@ -33,7 +33,7 @@ xdata = seq(0.5, 8.5, 0.5)
 ydata =  as.numeric(mydata[1,])
 
 # look at it
-plot(xdata, ydata, main="Mean RSSI Distribution over Distance - Beacon F5:7A:A5:E3:EF:18", xlab="Distance [meters]", ylab="RSSI [dBm]", las=1, xaxt="n")
+plot(xdata, ydata, main="Mean RSSI Distribution over Distance - Beacon D0:F8:F2:95:3A:5C", xlab="Distance [meters]", ylab="RSSI [dBm]", las=1, xaxt="n")
 axis(1, at=seq(0.5, 8.5, 0.5), labels=seq(0.5, 8.5, 0.5))
 
 # some starting values
