@@ -3,7 +3,6 @@ rm(list=ls())
 cat("\014")
 graphics.off()
 
-path <- "./DATASET_BEACONS/beacon_F57AA5E3EF18/hall_1/"
 
 rssi_all_beacons_over_distance <- function(path, beacon_name){
   files <- list.files(path=path,pattern="*.csv")
