@@ -24,7 +24,7 @@ y <- rep(2,length(x))
 
 
 # Creem un gràfic buit on situarem els Beacons i l'usuari
-plot(0, 0, type="n", main="Test environment - Room 1", xlab="x (6.00 m)", ylab="y (4.40 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
+plot(0, 0, type="n", main="Test environment - Room 1 (with estimate distances and LSQ method)", xlab="x (6.00 m)", ylab="y (4.40 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
 
 # Creem el eixos del gràfic
 axis(1, at=seq(0, ceiling(roomWidth), step), labels=seq(0, ceiling(roomWidth), step))
@@ -117,5 +117,7 @@ error_x = x - x_positions
 error_y = y - y_positions
 error_xy = sqrt( (x - x_positions)^2 + (y - y_positions)^2 )
 average_error = mean(error_xy)
-error_xy
+
+data_analized <- rbind(x,y,x_positions, y_positions, error_x, error_y, error_xy)
+
 average_error

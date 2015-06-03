@@ -4,7 +4,7 @@ cat("\014")
 graphics.off()
 
 # Carreguem funcions
-source('./ScriptsR/calculate_Position_LSQ.R');
+source('./ScriptsR/calculate_Position_NLSQ.R');
 source('./ScriptsR/calculate_Accuracy_custom.R');
 
 
@@ -24,7 +24,7 @@ y <- rep(2,length(x))
 
 
 # Creem un gràfic buit on situarem els Beacons i l'usuari
-plot(0, 0, type="n", main="Test environment - Room 1 (with real distances)", xlab="x (6.00 m)", ylab="y (4.40 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
+plot(0, 0, type="n", main="Test environment - Room 1 (with real distances and NLSQ method)", xlab="x (6.00 m)", ylab="y (4.40 m)", xlim=c(0,ceiling(roomWidth)), ylim=c(0,ceiling(roomHeight)), xaxt="n", yaxt="n")
 
 # Creem el eixos del gràfic
 axis(1, at=seq(0, ceiling(roomWidth), step), labels=seq(0, ceiling(roomWidth), step))
@@ -85,7 +85,7 @@ y_positions = c(1,length(r1))
 mostra <- 1
 
 for(i in 1:length(r1)){
-  sol = calculate_Position_LSQ(b1x, b1y, b2x, b2y, b3x, b3y, r1[[i]], r2[[i]], r3[[i]])
+  sol = calculate_Position_NLSQ(b1x, b1y, b2x, b2y, b3x, b3y, r1[[i]], r2[[i]], r3[[i]])
   x_positions[i] = sol[1];
   y_positions[i] = sol[2];
 }
@@ -94,3 +94,12 @@ for(i in 1:length(r1)){
 # Dibuixem els punts calculats
 points(x_positions, y_positions, pch=1, col="RED", cex=1.25)
 text(x_positions, y_positions, labels=c(1:length(x_positions)), cex=0.7, pos=1, col="RED")
+
+error_x = x - x_positions
+error_y = y - y_positions
+error_xy = sqrt( (x - x_positions)^2 + (y - y_positions)^2 )
+average_error = mean(error_xy)
+
+data_analized <- rbind(x,y,x_positions, y_positions, error_x, error_y, error_xy)
+
+average_error

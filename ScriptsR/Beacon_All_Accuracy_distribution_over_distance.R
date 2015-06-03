@@ -49,3 +49,4 @@ lines(x, promedio_accuracy_4, type='o', col="cornflowerblue")
 lines(x, promedio_accuracy_5, type='o', col="orange")
 
 legend(9,9.5, c("D0:F8:F2:95:3A:5C","D6:40:86:6D:BD:DF","D9:A3:28:6A:A7:F1","F5:7A:A5:E3:EF:18","FF:A6:7C:AF:B0:CB"), lwd=1, col=c('red', 'blue', 'green4','cornflowerblue','orange'), bty='n', xjust=0, x.intersp=0.1, y.intersp=0.2, seg.len=0.10, cex=1)
+abline(h=1:17, v=1:17, col="gray", lty=3)
